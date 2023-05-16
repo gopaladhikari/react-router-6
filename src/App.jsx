@@ -12,6 +12,9 @@ import HostVansDetails from "./components/HostVansDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import "./server";
+import HostVansDetailDashboard from "./components/HostVansDetailDashboard";
+import Pricing from "./Pricing";
+import Photos from "./Photos";
 
 function App() {
   return (
@@ -29,7 +32,11 @@ function App() {
             <Route path="income" element={<Income />} />
             <Route path="reviews" element={<Reviews />} />
             <Route path="vans" element={<HostVans />} />
-            <Route path="vans/:id" element={<HostVansDetails />} />
+            <Route path="vans/:id" element={<HostVansDetails />}>
+              <Route index element={<HostVansDetailDashboard />} />
+              <Route path="pricing" element={<Pricing />} />
+              <Route path="photos" element={<Photos />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

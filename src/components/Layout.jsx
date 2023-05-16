@@ -7,7 +7,7 @@ function Layout() {
   return (
     <>
       <Navbar />
-      <main className="max-w-[28rem] mt-4 mx-auto">
+      <main className="max-w-[28rem] mt-4 mx-auto px-4">
         <Outlet />
       </main>
       <Footer />

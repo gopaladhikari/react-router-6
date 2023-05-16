@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Outlet, NavLink } from "react-router-dom";
 
 function HostVansDetails() {
+  const activeStyle = {
+    fontWeight: "bold",
+    textDecoration: "underline",
+    textUnderlineOffset: "5px",
+    color: "red",
+  };
   const [vans, setVans] = useState(null);
   const { id } = useParams();
 
@@ -10,7 +16,6 @@ function HostVansDetails() {
     const result = await response.json();
     setVans(result.vans);
   };
-  console.log(vans);
 
   useEffect(() => {
     fetchData();
@@ -31,12 +36,28 @@ function HostVansDetails() {
           </p>
         </div>
       </div>
-
-      <div className="mt-6">
-        <h2 className="my-3"> Name: {vans.name}</h2>
-        <h2 className="my-3"> Category: {vans.type}</h2>
-        <h2 className="my-3"> Description: {vans.description}</h2>
-      </div>
+      <nav className="flex gap-4 my-4">
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : null)}
+          to="."
+          end
+        >
+          Details
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : null)}
+          to="pricing"
+        >
+          Pricing
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : null)}
+          to="photos"
+        >
+          Photos
+        </NavLink>
+      </nav>
+      <Outlet context={vans} />
     </section>
   ) : (
     "loading..."
